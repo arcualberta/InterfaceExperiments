@@ -23,7 +23,8 @@ export class TicTacToeBoard extends Component {
         super(props);
         this.state = {
             squares: Array(9).fill(null),
-            xIsNext: true
+            xIsNext: true,
+            error: null
         };
         this.size = 5;
     }
@@ -37,15 +38,25 @@ export class TicTacToeBoard extends Component {
 
     handleClick(i) {
         const squares = this.state.squares.slice();
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext
-        });
+        if (squares[i]) {
+            this.setState({
+                error: 'Block is already taken. ' + (this.state.xIsNext ? 'X' : 'O') + ' lost a turn.',
+                xIsNext: !this.state.xIsNext
+            })
+        }
+        else {
+            squares[i] = this.state.xIsNext ? 'X' : 'O';
+            this.setState({
+                squares: squares,
+                error: null,
+                xIsNext: !this.state.xIsNext
+            });
+        }
     }
 
     render() {
         const status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+        const error = this.state.error;
 
         let rows = [];
         for (let r = 0; r < this.size; ++r) {
@@ -58,7 +69,7 @@ export class TicTacToeBoard extends Component {
 
         return (
             <div>
-                <div className="status">{status}</div>
+                <div className="status">{status} <span className="error">{error}</span></div>
                 {rows}
             </div>
         );
