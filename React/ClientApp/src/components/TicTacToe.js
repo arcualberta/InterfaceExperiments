@@ -1,4 +1,8 @@
-﻿import React, { Component } from 'react';
+﻿/*
+ * Credits: https://reactjs.org/tutorial/tutorial.html
+*/
+
+import React, { Component } from 'react';
 import './TicTacToe.css';
 
 class Square extends Component {
@@ -21,6 +25,7 @@ export class TicTacToeBoard extends Component {
             squares: Array(9).fill(null),
             xIsNext: true
         };
+        this.size = 5;
     }
 
     renderSquare(i) {
@@ -41,24 +46,20 @@ export class TicTacToeBoard extends Component {
 
     render() {
         const status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
+
+        let rows = [];
+        for (let r = 0; r < this.size; ++r) {
+            let cols = [];
+            for (let c = 0; c < this.size; ++c) {
+                cols.push(this.renderSquare(r * this.size + c));
+            }
+            rows.push(<div className="board-row">{cols}</div>);
+        }
+
         return (
             <div>
                 <div className="status">{status}</div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+                {rows}
             </div>
         );
     }
