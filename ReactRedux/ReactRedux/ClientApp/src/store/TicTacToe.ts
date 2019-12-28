@@ -16,19 +16,20 @@ export interface TicTacToeState {
 // They do not themselves have any side-effects; they just describe something that is going to happen.
 // Use @typeName and isActionType for type detection that works even after serialization/deserialization.
 
-export interface ClickAction { type: 'CLICK', index: number }
-
+export interface CheckAction { type: 'CHECK', index: number }
+export interface ResetAction { type: 'RESET' }
 
 // Declare a 'discriminated union' type. This guarantees that all references to 'type' properties contain one of the
 // declared type strings (and not any other arbitrary string).
-export type KnownAction = ClickAction;
+export type KnownAction = CheckAction | ResetAction;
 
 // ----------------
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
 // They don't directly mutate state, but they can have external side-effects (such as loading data).
 
 export const actionCreators = {
-    click: (idx: number) => ({ type: 'CLICK', index: idx } as ClickAction)
+    check: (idx: number) => ({ type: 'CHECK', index: idx } as CheckAction),
+    reset: () => ({ type: 'RESET' } as ResetAction)
 };
 
 // ----------------
@@ -48,7 +49,7 @@ export const reducer: Reducer<TicTacToeState> = (state: TicTacToeState | undefin
     const action = incomingAction as KnownAction;
 
     switch (action.type) {
-        case 'CLICK':
+        case 'CHECK':
             if (state.winner) {
                 return state; //Already in a winning state. No need to continue playing.
             }
@@ -58,10 +59,18 @@ export const reducer: Reducer<TicTacToeState> = (state: TicTacToeState | undefin
                 xIsNext: !state.xIsNext,
                 error: state.error,
                 winner: state.winner
-            }
+            };
             newState.squares[action.index] = state.xIsNext ? "X" : "O";
             newState.winner = calcWinner(newState.squares, Math.floor(Math.sqrt(newState.squares.length)));
+            return newState;
 
+        case 'RESET':
+            newState = {
+                squares: state.squares.map(x => ""),
+                xIsNext: true,
+                error: null,
+                winner: ""
+            };
             return newState;
         default:
             return state;

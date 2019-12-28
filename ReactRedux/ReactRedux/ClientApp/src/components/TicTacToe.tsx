@@ -44,7 +44,7 @@ class TicTacToeBoard extends React.PureComponent<TicTacToeProps> {
                 let idx = r * n + c;
                 cols.push(<button
                     id={idx.toString()}
-                    onClick={() => { this.props.click(idx); }}
+                    onClick={() => { this.props.check(idx); }}
                     className={cssClass}
                 >
                     {this.props.squares[idx]}
@@ -56,6 +56,11 @@ class TicTacToeBoard extends React.PureComponent<TicTacToeProps> {
         return (
             <div>
                 {rows}
+                <br />
+                <br />
+                <div>
+                    <button className="reset" onClick={() => { this.props.reset(); }}>Reset</button>
+                </div>
             </div>
             );
     }
