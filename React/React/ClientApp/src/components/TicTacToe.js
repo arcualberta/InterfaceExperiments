@@ -21,13 +21,14 @@ class Square extends Component {
 export class TicTacToeBoard extends Component {
     constructor(props) {
         super(props);
+        this.size = 5;
         this.state = {
-            squares: Array(9).fill(null),
+            squares: Array(this.size * this.size).fill(null),
             xIsNext: true,
             error: null,
             winner: null
         };
-        this.size = 5;
+        
     }
 
     renderSquare(i) {
