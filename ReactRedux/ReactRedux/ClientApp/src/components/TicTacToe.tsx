@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { ApplicationState } from '../../store';
-import * as TicTacToeStore from '../../store/TicTacToe';
+import { ApplicationState } from '../store';
+import * as TicTacToeStore from '../store/TicTacToe';
 import './TicTacToe.css';
 
 // At runtime, Redux will merge together...
