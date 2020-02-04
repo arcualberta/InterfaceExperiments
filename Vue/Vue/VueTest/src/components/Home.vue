@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <h1>{{ msg }}</h1>
+        <div>Next Player: {{players[turn]}}</div>
         <div class="my-row" v-for="row of gridData.rows">
             <div class="my-col" v-for="col of gridData.cols" v-on:click="placeToken"></div>
         </div>
@@ -13,17 +14,23 @@
     @Component
     export default class Home extends Vue {
         @Prop() private msg!: string;
-        data() {
-            return {
-                gridData: {
-                    rows: 3,
-                    cols: 3
-                }
+
+        gridData:any = {
+            rows: 3,
+            cols: 3
+        };
+        players: Array<String> = ['X', 'Y'];
+        turn: number = 0;
+
+              
+        //places the player's token in the grid
+        placeToken() {
+            if (this.turn > 0) {
+                this.turn = 0;
+            } else {
+                this.turn = 1;
             }
         }
-
-
-        
 
     }
 </script>
