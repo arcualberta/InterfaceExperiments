@@ -1,7 +1,8 @@
 <template>
     <div class="home">
         <h1>{{ msg }}</h1>
-        <div>Next Player: {{players[turn]}}</div>
+        <div v-if="endStateReached">{{endStateMsg}}</div>
+        <div v-else>Next Player: {{players[turn]}}</div>
         <div class="my-row" v-for="(row, rowIndex) in gridData.rows">
             <div class="my-col" v-for="(col, colIndex) in gridData.cols" v-on:click="placeToken(rowIndex, colIndex)">{{squareState[rowIndex*gridData.cols+colIndex]}}</div>
         </div>
@@ -23,6 +24,8 @@
         players: Array<string> = ['X', 'O'];
         squareState: Array<string> = ['', '', '', '', '', '', '', '', ''];
         turn: number = 0;
+        endStateMsg: string = '';
+        endStateReached: boolean = false;
 
               
         //places the player's token in the grid
@@ -32,7 +35,14 @@
             if (this.squareState[squarePos] == '') {
                 this.squareState[squarePos] = this.players[this.turn];
 
-                this.checkForWinner();
+                let potentialEnd = this.checkForWinner();
+                let handledEnd = this.handleEndstate(potentialEnd);
+                //means we have an ending
+                if (handledEnd.length > 0) {
+                    this.endStateMsg = handledEnd;
+                    this.endStateReached = true;
+                    return;
+                }
 
                 if (this.turn > 0) {
                     this.turn = 0;
@@ -49,11 +59,12 @@
             for (let squareIndex in this.squareState) {
                 Vue.set(this.squareState, squareIndex, '');
             }
+            this.endStateReached = false;
         }
 
 
         //checks if there has been a winner from the player's turn
-        checkForWinner() {
+        checkForWinner():any {
             //check rows for a win
             //take sectons of the array and check if each the same as each other
             for (let rowNum = 0; rowNum < this.gridData.rows; rowNum++) {
@@ -62,6 +73,7 @@
                     element === tmpRow[0] && tmpRow[0] != ''
                 )){
                     console.log("row found!");
+                    return tmpRow[0];
                 }
             }
 
@@ -75,6 +87,7 @@
                         element === tmpArray[0] && tmpArray[0] != ''
                     )){
                         console.log("col found!");
+                        return tmpArray[0];
                     }
             }
 
@@ -89,7 +102,8 @@
             if (tmpArr.every((element) =>
                         element === tmpArr[0] && tmpArr[0] != ''
                     )){
-                        console.log("left diagonal found!");
+                console.log("left diagonal found!");
+                return tmpArr[0];
                     }
 
             //right-to-left diagonal
@@ -101,15 +115,35 @@
             if (tmpArr.every((element) =>
                         element === tmpArr[0] && tmpArr[0] != ''
                     )){
-                        console.log("right diagonal found!");
+                console.log("right diagonal found!");
+                return tmpArr[0];
                     }
 
             //if it's a draw
             if (tmpArr.every((element) =>
                    element === this.players[0] || element === this.players[1]
                )){
-                   console.log("Draw reached");
-               }
+                console.log("Draw reached");
+                return null;
+            }
+
+            return ""
+
+        }
+
+        //handles if the turn resulted in an endgame state
+        //null = draw
+        //"" = not an ending state
+        //X or O = winner
+        handleEndstate(pEnd: any):string {
+            switch (pEnd) {
+                case null:
+                    return "Game Finished - Draw"
+                case "":
+                    return "";
+                default:
+                    return "Winner is " + pEnd + "!";
+                }
         }
 
     }
