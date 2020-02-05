@@ -3,9 +3,9 @@
         <h1>{{ msg }}</h1>
         <div>Next Player: {{players[turn]}}</div>
         <div class="my-row" v-for="(row, rowIndex) in gridData.rows">
-            <div class="my-col" v-for="(col, colIndex) in gridData.cols" v-on:click="placeToken"></div>
+            <div class="my-col" v-for="(col, colIndex) in gridData.cols" v-on:click="placeToken(rowIndex, colIndex)">{{squareState[rowIndex*gridData.cols+colIndex]}}</div>
         </div>
-        <button>Reset</button>
+        <button v-on:click="resetGame">Reset</button>
     </div>
 </template>
 
@@ -20,14 +20,17 @@
             rows: 3,
             cols: 3
         };
-        players: Array<String> = ['X', 'O'];
+        players: Array<string> = ['X', 'O'];
+        squareState: Array<string> = ['', '', '', '', '', '', '', '', ''];
         turn: number = 0;
 
               
         //places the player's token in the grid
-        placeToken(element: any) {
-            if (element.target.innerHTML == '') {
-                element.target.innerHTML = this.players[this.turn];
+        placeToken(row: number, col: number) {
+            let squarePos = (row * this.gridData.cols) + col; 
+
+            if (this.squareState[squarePos] == '') {
+                this.squareState[squarePos] = this.players[this.turn];
 
                 if (this.turn > 0) {
                     this.turn = 0;
@@ -37,7 +40,10 @@
     
             }
 
+        }
 
+        //resets the game to the beginning state
+        resetGame() {
 
         }
 
