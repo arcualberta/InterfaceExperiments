@@ -44,7 +44,9 @@
 
         //resets the game to the beginning state
         resetGame() {
-
+            for (let squareIndex in this.squareState) {
+                Vue.set(this.squareState, squareIndex, '');
+            }
         }
 
     }
