@@ -66,7 +66,18 @@
             }
 
             //check cols for a win
-
+            for (let cols = 0; cols < this.gridData.cols; cols++) {
+                let tmpArray: Array<string> = [];
+                for (let index = 0; index < this.gridData.cols; index++) {
+                    tmpArray.push(this.squareState[(+index * this.gridData.rows) + cols ]);
+                    }
+                    if (tmpArray.every((element) =>
+                        element === tmpArray[0] && tmpArray[0] != ''
+                    )){
+                        console.log("col found!");
+                    }
+            }
+            
         }
 
     }
