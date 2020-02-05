@@ -77,7 +77,39 @@
                         console.log("col found!");
                     }
             }
-            
+
+            //check diagonals for a win
+
+            //left-to-right diagonal
+            let tmpArr: Array<string> = [];
+            for (let index = 0; index < this.squareState.length; index += 4) {
+                tmpArr.push(this.squareState[index]);
+            }
+
+            if (tmpArr.every((element) =>
+                        element === tmpArr[0] && tmpArr[0] != ''
+                    )){
+                        console.log("left diagonal found!");
+                    }
+
+            //right-to-left diagonal
+            tmpArr = [];
+            for (let index = 2; index < this.squareState.length-1; index += 2) {
+                tmpArr.push(this.squareState[index]);
+            }
+            console.log(tmpArr);
+            if (tmpArr.every((element) =>
+                        element === tmpArr[0] && tmpArr[0] != ''
+                    )){
+                        console.log("right diagonal found!");
+                    }
+
+            //if it's a draw
+            if (tmpArr.every((element) =>
+                   element === this.players[0] || element === this.players[1]
+               )){
+                   console.log("Draw reached");
+               }
         }
 
     }
