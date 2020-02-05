@@ -32,6 +32,8 @@
             if (this.squareState[squarePos] == '') {
                 this.squareState[squarePos] = this.players[this.turn];
 
+                this.checkForWinner();
+
                 if (this.turn > 0) {
                     this.turn = 0;
                 } else {
@@ -47,6 +49,24 @@
             for (let squareIndex in this.squareState) {
                 Vue.set(this.squareState, squareIndex, '');
             }
+        }
+
+
+        //checks if there has been a winner from the player's turn
+        checkForWinner() {
+            //check rows for a win
+            //take sectons of the array and check if each the same as each other
+            for (let rowNum = 0; rowNum < this.gridData.rows; rowNum++) {
+                let tmpRow = this.squareState.slice(rowNum * this.gridData.cols, (rowNum * this.gridData.cols) + this.gridData.cols);
+                if (tmpRow.every((element) =>
+                    element === tmpRow[0] && tmpRow[0] != ''
+                )){
+                    console.log("row found!");
+                }
+            }
+
+            //check cols for a win
+
         }
 
     }
