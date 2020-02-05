@@ -4,7 +4,7 @@
         <div v-if="endStateReached">{{endStateMsg}}</div>
         <div v-else>Next Player: {{players[turn]}}</div>
         <div class="my-row" v-for="(row, rowIndex) in gridData.rows">
-            <div class="my-col" v-for="(col, colIndex) in gridData.cols" v-on:click="placeToken(rowIndex, colIndex)">{{squareState[rowIndex*gridData.cols+colIndex]}}</div>
+            <div class="my-col" v-bind:class="{'game-finished': endStateReached }" v-for="(col, colIndex) in gridData.cols" v-on:click="placeToken(rowIndex, colIndex)">{{squareState[rowIndex*gridData.cols+colIndex]}}</div>
         </div>
         <button v-on:click="resetGame">Reset</button>
     </div>
@@ -165,17 +165,8 @@
         justify-content: center;
     }
 
-    .square-filled{
-        border: 1px solid #999;
-        float: left;
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 34px;
-        height: 34px;
-        margin-right: -1px;
-        margin-top: -1px;
-        padding: 0;
-        text-align: center;
-        width: 34px;
+    .game-finished{
+        background-color: lightgrey;
     }
+
 </style>
