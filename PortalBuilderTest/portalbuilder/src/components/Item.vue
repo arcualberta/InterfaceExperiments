@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        I am an item
+        I am item #{{idNum}}
     </div>
 </template>
 
@@ -8,7 +8,8 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
 
     @Component
-    export default class Home extends Vue {
+    export default class DragItem extends Vue {
+        @Prop() private idNum!: string;
         //load this stuff from the DB, passed in from parent
         name: string = "My item name";
         id: number = 0;

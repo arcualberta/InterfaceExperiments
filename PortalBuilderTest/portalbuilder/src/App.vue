@@ -3,7 +3,7 @@
         <Home/>
         <div class="layout-item-container">
             <div v-for="item in [0, 1, 2, 3, 4]">
-                <Item></Item>
+                <DragItem :idNum=item></DragItem>
             </div>
         </div>
         
@@ -13,12 +13,12 @@
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     import Home from './components/Home.vue';
-    import Item from './components/Item.vue';
+    import DragItem from './components/Item.vue';
 
     @Component({
         components: {
             Home,
-            Item
+            DragItem
         }
     })
     export default class App extends Vue { }

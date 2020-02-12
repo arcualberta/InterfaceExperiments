@@ -5,8 +5,8 @@ import { Module } from "vuex";
 const homeModule: Module<any, any> = {
 
     state: {
-        title: "A Portal all about Kitters",
-        subTitle: "A novel by Jillian Lovas",
+        title: null,
+        subTitle: null,
         portalItems: Array<any>() //create Item object for this based on DB
     },
 
