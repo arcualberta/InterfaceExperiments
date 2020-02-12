@@ -1,5 +1,5 @@
 // vue.config.js
-module.exports = {
+/*module.exports = {
     module: {
         rules: [
             // ... other rules omitted
@@ -17,4 +17,4 @@ module.exports = {
         ]
     },
   // plugin omitted
-}
+}*/
