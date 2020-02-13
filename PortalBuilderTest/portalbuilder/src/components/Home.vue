@@ -11,8 +11,8 @@
                 <input @input="updateTitle" placeholder="Title"></input>
                 <input @input="updateSubTitle" placeholder="Sub Title"></input>
                 <p>Homescreen, need to add components for the bits here!</p>
-                <draggable class="draggable-item-container" :list="itemsPlaced" group="sharedItems">
-                    <div class="draggable-item" v-for="item in itemsPlaced" :key='item.name'>
+                <draggable class="draggable-item-container" :list="portalElements" group="sharedItems">
+                    <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
                         <DragItem :idNum=item.id />
                     </div>
                 </draggable>
@@ -20,7 +20,7 @@
             <div class="draggable-item-container">
                 <h2 class="draggable-header">Layout Options</h2>
                 <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
-                    <div class="draggable-item" v-for="item in layoutItems" :key='item.name'>
+                    <div class="draggable-item" v-for="item in layoutItems" :key='item.id'>
                         <DragItem :idNum=item.id />
                     </div>
                 </draggable>
@@ -61,6 +61,14 @@
             this.$store.commit('updateSubTitle', event.target.value);
         }
 
+        get portalElements():Array<any> {
+            return this.$store.getters.getPortalItems;
+        }
+
+        set portalElements(newArray) {
+            this.$store.dispatch("updatePortalItems", newArray);
+        }
+
     }
 </script>
 
@@ -70,28 +78,31 @@
     .overall-container {
         display: flex;
         flex-direction: row;
+        .home
 
-        .home {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            flex: 2;
-        }
-        
-        .draggable-item-container {
-            display: flex;
-            flex-direction: column;
-            padding:10px;
-            justify-content: center;
-            border: solid black 1px;
-            wdith: 100%;
-            flex: 1;
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex: 2;
+    }
 
-            .draggable-item{
-                border: solid black 1px;
-                padding:10px;
-                cursor:grab;
-            }
-        }
+    .draggable-item-container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        justify-content: center;
+        border: solid black 1px;
+        wdith: 100%;
+        flex: 1;
+        .draggable-item
+
+    {
+        border: solid black 1px;
+        padding: 10px;
+        cursor: grab;
+    }
+
+    }
     }
 </style>

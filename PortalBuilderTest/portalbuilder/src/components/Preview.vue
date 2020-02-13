@@ -4,6 +4,8 @@
         <button v-on:click="returnToEditor">Back to Editing</button>
         <div>{{this.$store.getters.getTitle}}</div>
         <div>{{this.$store.getters.getSubTitle}}</div>
+
+        <div>{{this.$store.state}}</div>
     </div>
 </template>
 

@@ -26,17 +26,9 @@ const homeModule: Module<any, any> = {
     },
 
     actions: {
-        addItemToPortal({ commit }, { id, type }) {
-            
-        },
-
-        moveItemInPortal({ commit }) {
-
-        },
-
-        deleteItemInPortal({ commit }) {
-
-        },
+        updatePortalItems({ commit }, payload){
+            state.portalElements = payload;
+        }
 
 
 
@@ -49,7 +41,12 @@ const homeModule: Module<any, any> = {
 
         updateSubTitle(state: any, newSubTitle: string) { //passed payload value should be an object
             state.subTitle = newSubTitle;
+        },
+
+        updateLayoutItems(state, payload){
+            commit("updatePortalItems", payload);
         }
+
 
     },
 };
