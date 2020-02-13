@@ -1,39 +1,28 @@
 <template>
-    <div class="overall-container">
-        <Home/>
-        <div class="layout-item-container">
-            <div v-for="item in [0, 1, 2, 3, 4]">
-                <DragItem :idNum=item></DragItem>
-            </div>
-        </div>
-        
-    </div>
+        <router-view></router-view>
 </template>
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
+    
+    import Preview from './components/Preview.vue';
     import Home from './components/Home.vue';
     import DragItem from './components/Item.vue';
 
+
+
     @Component({
+    //this is local component use
         components: {
+            DragItem,
             Home,
-            DragItem
+            Preview
         }
     })
-    export default class App extends Vue { }
+    export default class App extends Vue {
+    }
 </script>
 
 <style lang="scss">
-    .overall-container{
-        display:flex;
-        flex-direction: row;
-    
-        .layout-item-container{
-            display: flex;
-            flex-direction: column;
-        }
-        
-        }
     
 </style>

@@ -35,6 +35,9 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
+    <Content Include="src\components\Preview.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Home.vue" />
     <Content Include="src\components\Item.vue" />
     <Content Include="tsconfig.json" />
@@ -48,6 +51,7 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\models\" />
     <Folder Include="src\store\" />
     <Folder Include="src\store\modules\" />
   </ItemGroup>
@@ -60,6 +64,8 @@
     <Content Include="babel.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\models\item.ts" />
+    <TypeScriptCompile Include="src\routes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\modules\home.module.ts" />
   </ItemGroup>
