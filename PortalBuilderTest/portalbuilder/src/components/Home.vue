@@ -8,8 +8,8 @@
 
         <div class="overall-container">
             <div class="home">
-                <input @input="updateTitle" placeholder="Title"></input>
-                <input @input="updateSubTitle" placeholder="Sub Title"></input>
+                <input v-model="titleValue" placeholder="Title" value="titleValue"></input>
+                <input v-model="subTitleValue" placeholder="Sub Title" value="subTitleValue"></input>
                 <p>Homescreen, need to add components for the bits here!</p>
                 <draggable class="draggable-item-container" :list="portalElements" group="sharedItems">
                     <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
@@ -52,14 +52,23 @@
             this.$router.replace('preview');
         }
 
-        //TODO change to a swtich statement for title and subtitle use later
-        updateTitle(event:any) {
-            this.$store.commit('updateTitle', event.target.value);
+        get titleValue():String {
+            return this.$store.getters.getTitle;
         }
 
-        updateSubTitle(event: any) {
-            this.$store.commit('updateSubTitle', event.target.value);
+        set titleValue(newString) {
+             this.$store.commit('updateTitle', newString);
         }
+
+        
+        get subTitleValue():String {
+            return this.$store.getters.getSubTitle;
+        }
+
+        set subTitleValue(newString) {
+             this.$store.commit('updateSubTitle', newString);
+        }
+
 
         get portalElements():Array<any> {
             return this.$store.getters.getPortalItems;
