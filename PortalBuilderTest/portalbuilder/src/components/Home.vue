@@ -11,11 +11,19 @@
                 <input @input="updateTitle" placeholder="Title"></input>
                 <input @input="updateSubTitle" placeholder="Sub Title"></input>
                 <p>Homescreen, need to add components for the bits here!</p>
+                <draggable class="draggable-item-container" :list="itemsPlaced" group="sharedItems">
+                    <div class="draggable-item" v-for="item in itemsPlaced" :key='item.name'>
+                        <DragItem :idNum=item.id />
+                    </div>
+                </draggable>
             </div>
-            <div class="layout-item-container">
-                <div v-for="item in [0, 1, 2, 3, 4]">
-                    <DragItem :idNum=item />
-                </div>
+            <div class="draggable-item-container">
+                <h2 class="draggable-header">Layout Options</h2>
+                <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
+                    <div class="draggable-item" v-for="item in layoutItems" :key='item.name'>
+                        <DragItem :idNum=item.id />
+                    </div>
+                </draggable>
             </div>
         </div>
     </div>
@@ -23,13 +31,22 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
-    //import DragItem from './components/Item.vue';
+    import draggable from 'vuedraggable';
 
-    @Component
+    @Component({
+        components:{
+            draggable,
+        }
+    })
     export default class Home extends Vue {
+        itemsPlaced:Array<any> =  [];
+    //TODO: move these to another place to fetch until DB is implemented - they are static tho so...
+        layoutItems:Array<any> =  [
+        { name: "Image Carousel", id: 5, type: "carousel" },
+        { name: "Form", id: 6, type: "form" },
+        { name: "Description", id: 7, type: "description" }
+      ];
 
-        //try controlling the route programmically, use the 
-        //router.push thing and put it inside a window.open call and see if that works
 
         openPreview() {
             this.$router.replace('preview');
@@ -43,27 +60,38 @@
         updateSubTitle(event: any) {
             this.$store.commit('updateSubTitle', event.target.value);
         }
-        
+
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-    .home{
-        display:flex;
-        flex-direction:column;
-    }
-
-        .overall-container{
-        display:flex;
+    .overall-container {
+        display: flex;
         flex-direction: row;
-    
-        .layout-item-container{
+
+        .home {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            flex: 2;
         }
         
-        }
+        .draggable-item-container {
+            display: flex;
+            flex-direction: column;
+            padding:10px;
+            justify-content: center;
+            border: solid black 1px;
+            wdith: 100%;
+            flex: 1;
 
+            .draggable-item{
+                border: solid black 1px;
+                padding:10px;
+                cursor:grab;
+            }
+        }
+    }
 </style>
