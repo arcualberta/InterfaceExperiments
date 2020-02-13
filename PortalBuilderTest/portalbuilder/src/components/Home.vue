@@ -32,8 +32,7 @@
         //router.push thing and put it inside a window.open call and see if that works
 
         openPreview() {
-            //window.open('/preview');
-            //this.$router.replace('preview') 
+            this.$router.replace('preview');
         }
 
         //TODO change to a swtich statement for title and subtitle use later
