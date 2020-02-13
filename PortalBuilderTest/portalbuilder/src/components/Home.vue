@@ -11,17 +11,21 @@
                 <input v-model="titleValue" placeholder="Title" value="titleValue"></input>
                 <input v-model="subTitleValue" placeholder="Sub Title" value="subTitleValue"></input>
                 <p>Homescreen, need to add components for the bits here!</p>
+                
+                <!-- Elements that are editable -->
                 <draggable class="draggable-item-container" :list="portalElements" group="sharedItems">
                     <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
-                        <DragItem :idNum=item.id />
+                        <DragItem @delete-item="deleteItem()" :idNum=item.id :deleteable=true />
                     </div>
                 </draggable>
             </div>
+
+            <!-- Elements that are NOT editable, ie, they're just the draggables -->
             <div class="draggable-item-container">
                 <h2 class="draggable-header">Layout Options</h2>
                 <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
                     <div class="draggable-item" v-for="item in layoutItems" :key='item.id'>
-                        <DragItem :idNum=item.id />
+                        <DragItem :idNum=item.id :deleteable=false />
                     </div>
                 </draggable>
             </div>
@@ -76,6 +80,10 @@
 
         set portalElements(newArray) {
             this.$store.dispatch("updatePortalItems", newArray);
+        }
+
+        deleteItem(){
+        console.log("parent heard to delete");
         }
 
     }

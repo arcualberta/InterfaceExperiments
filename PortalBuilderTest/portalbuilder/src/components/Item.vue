@@ -1,6 +1,11 @@
 <template>
     <div class="item">
-        I am item #{{idNum}}
+        <div class="label">
+            I am item #{{idNum}}
+        </div>
+        <div v-if="deleteable">
+            <button v-on:click="deleteItem">X</button>
+        </div>
     </div>
 </template>
 
@@ -10,9 +15,16 @@
     @Component
     export default class DragItem extends Vue {
         @Prop() private idNum!: string;
+        @Prop() private deleteable!: boolean;
         //load this stuff from the DB, passed in from parent
         name: string = "My item name";
         id: number = 0;  
+
+
+        deleteItem(){
+            this.$emit('delete-item', this.idNum); //idNum might not be right thing
+        }
+
 
     }
 </script>
