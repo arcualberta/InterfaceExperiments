@@ -14,16 +14,17 @@
 
     @Component
     export default class DragItem extends Vue {
-        @Prop() private idNum!: string;
+        @Prop() private idNum!: number;
+        @Prop() private indexNum!: number;
         @Prop() private deleteable!: boolean;
         //load this stuff from the DB, passed in from parent
-        name: string = "My item name";
-        id: number = 0;  
 
 
         deleteItem(){
-            this.$emit('delete-item', this.idNum); //idNum might not be right thing
-        }
+            this.$emit('delete-item', this.indexNum);
+		}
+
+
 
 
     }

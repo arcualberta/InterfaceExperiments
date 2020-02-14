@@ -27,7 +27,7 @@ const homeModule: Module<any, any> = {
 
     actions: {
         updatePortalItems({ commit }, payload){
-            state.portalElements = payload;
+            commit("updatePortalItems", payload);
         }
 
 
@@ -44,7 +44,7 @@ const homeModule: Module<any, any> = {
         },
 
         updateLayoutItems(state, payload){
-            commit("updatePortalItems", payload);
+            state.portalElements = payload;
         }
 
 

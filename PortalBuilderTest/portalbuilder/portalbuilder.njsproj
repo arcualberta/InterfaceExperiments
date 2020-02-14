@@ -46,7 +46,9 @@
     <Content Include="vue.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="%40types\vuedraggable\" />
     <Folder Include="dist\" />
+    <Folder Include="%40types\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
@@ -68,6 +70,9 @@
     <TypeScriptCompile Include="src\routes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\modules\home.module.ts" />
+    <TypeScriptCompile Include="%40types\vuedraggable\index.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

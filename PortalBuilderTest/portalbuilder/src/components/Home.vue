@@ -15,7 +15,7 @@
                 <!-- Elements that are editable -->
                 <draggable class="draggable-item-container" :list="portalElements" group="sharedItems">
                     <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
-                        <DragItem @delete-item="deleteItem()" :idNum=item.id :deleteable=true />
+                        <DragItem @delete-item="deleteItem($event)" :idNum=item.id :indexNum="index" :deleteable=true />
                     </div>
                 </draggable>
             </div>
@@ -34,8 +34,8 @@
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from 'vue-property-decorator';
-    import draggable from 'vuedraggable';
+	import { Component, Prop, Vue } from 'vue-property-decorator';
+	import draggable from 'vuedraggable'; 
 
     @Component({
         components:{
@@ -82,8 +82,8 @@
             this.$store.dispatch("updatePortalItems", newArray);
         }
 
-        deleteItem(){
-        console.log("parent heard to delete");
+        deleteItem($event:any){
+        console.log("parent heard to delete: ", $event);
         }
 
     }
