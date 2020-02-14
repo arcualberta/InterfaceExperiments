@@ -11,10 +11,10 @@
                 <input v-model="titleValue" placeholder="Title" value="titleValue"></input>
                 <input v-model="subTitleValue" placeholder="Sub Title" value="subTitleValue"></input>
                 <p>Homescreen, need to add components for the bits here!</p>
-                
+
                 <!-- Elements that are editable -->
                 <draggable class="draggable-item-container" :list="portalElements" group="sharedItems" handle=".handle">
-                    <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
+                    <div class="draggable-item" v-on:click="showModal(item.type)" v-for="(item, index) in portalElements" :key='index'>
                         <i class="handle draggable">HANDLE</i>
                         <DragItem @delete-item="deleteItem($event)" :idNum=item.id :indexNum="index" :deleteable=true />
                     </div>
@@ -31,12 +31,14 @@
                 </draggable>
             </div>
         </div>
+        <modals-container />
     </div>
 </template>
 
 <script lang="ts">
 	import { Component, Prop, Vue } from 'vue-property-decorator';
 	import draggable from 'vuedraggable'; 
+import Carousel from './Carousel.vue';
 
     @Component({
         components:{
@@ -85,7 +87,18 @@
 
 		deleteItem($event: any) {
 			this.$store.dispatch('deletePortalItem', $event);
-        }
+		}
+
+		showModal(modalName: string) {
+			console.log("showing modal");
+			this.$modal.show(Carousel, {
+				title: 'My Modal!',
+				description: 'a description of the modal',
+				buttonText1: 'Button is me',
+				buttonText2: '',
+
+			});
+		}
 
     }
 </script>

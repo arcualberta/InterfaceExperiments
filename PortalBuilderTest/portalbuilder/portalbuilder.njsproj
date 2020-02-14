@@ -35,6 +35,9 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
+    <Content Include="src\components\Carousel.vue" />
+    <Content Include="src\components\ModalContentsBase.pug" />
+    <Content Include="src\components\ModalContentsBase.vue" />
     <Content Include="src\components\Preview.vue">
       <SubType>Code</SubType>
     </Content>

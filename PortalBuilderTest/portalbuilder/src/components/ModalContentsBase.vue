@@ -8,13 +8,14 @@
 	@Component({
 	})
 	export default class ModalContentsBase extends Vue {
-		@Prop() title: string = '';
-		@Prop() description: string = '';
-		@Prop() buttonText1: string = 'Close';
-		@Prop() buttonText2: string = '';
-		@Prop() tabTitle1: string = '';
-		@Prop() tabTitle2: string = '';
-		@Prop() tabTitle3: string = '';
+		//interface?
+		title: string = '';
+		description: string = '';
+		buttonText1: string = 'Close';
+		buttonText2: string = '';
+		tabTitle1: string = '';
+		tabTitle2: string = '';
+		tabTitle3: string = '';
 
 
 
