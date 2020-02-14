@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
 import VueRouter from 'vue-router';
+import VModal from 'vue-js-modal';
+
 import Preview from './components/Preview.vue';
 import Home from './components/Home.vue';
 import DragItem from './components/Item.vue';
@@ -13,6 +15,7 @@ const routes = [
     { path: '/preview', component: Preview }
 ]
 
+Vue.use(VModal)
 Vue.use(VueRouter)
 const router = new VueRouter({ routes });
 

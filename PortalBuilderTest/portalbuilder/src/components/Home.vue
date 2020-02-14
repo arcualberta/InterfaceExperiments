@@ -13,8 +13,9 @@
                 <p>Homescreen, need to add components for the bits here!</p>
                 
                 <!-- Elements that are editable -->
-                <draggable class="draggable-item-container" :list="portalElements" group="sharedItems">
+                <draggable class="draggable-item-container" :list="portalElements" group="sharedItems" handle=".handle">
                     <div class="draggable-item" v-for="(item, index) in portalElements" :key='index'>
+                        <i class="handle draggable">HANDLE</i>
                         <DragItem @delete-item="deleteItem($event)" :idNum=item.id :indexNum="index" :deleteable=true />
                     </div>
                 </draggable>
@@ -24,7 +25,7 @@
             <div class="draggable-item-container">
                 <h2 class="draggable-header">Layout Options</h2>
                 <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
-                    <div class="draggable-item" v-for="item in layoutItems" :key='item.id'>
+                    <div class="draggable-item draggable" v-for="item in layoutItems" :key='item.id'>
                         <DragItem :idNum=item.id :deleteable=false />
                     </div>
                 </draggable>
@@ -82,8 +83,8 @@
             this.$store.dispatch("updatePortalItems", newArray);
         }
 
-        deleteItem($event:any){
-        console.log("parent heard to delete: ", $event);
+		deleteItem($event: any) {
+			this.$store.dispatch('deletePortalItem', $event);
         }
 
     }
@@ -95,8 +96,8 @@
     .overall-container {
         display: flex;
         flex-direction: row;
+        
         .home
-
     {
         display: flex;
         flex-direction: column;
@@ -110,16 +111,21 @@
         padding: 10px;
         justify-content: center;
         border: solid black 1px;
-        wdith: 100%;
         flex: 1;
-        .draggable-item
 
+        .draggable-item
     {
         border: solid black 1px;
         padding: 10px;
+
+        .handle
+            {
+
+            }
+    }
+    .draggable{
         cursor: grab;
     }
-
     }
     }
 </style>

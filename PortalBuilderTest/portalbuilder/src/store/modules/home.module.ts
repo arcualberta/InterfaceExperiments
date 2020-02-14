@@ -28,6 +28,10 @@ const homeModule: Module<any, any> = {
     actions: {
         updatePortalItems({ commit }, payload){
             commit("updatePortalItems", payload);
+        },
+
+        deletePortalItem({ commit }, payload) {
+            commit('deleteLayoutItem', payload);
         }
 
 
@@ -39,12 +43,16 @@ const homeModule: Module<any, any> = {
             state.title = newTitle;
         },
 
-        updateSubTitle(state: any, newSubTitle: string) { //passed payload value should be an object
+        updateSubTitle(state: any, newSubTitle: string) {
             state.subTitle = newSubTitle;
         },
 
         updateLayoutItems(state, payload){
             state.portalElements = payload;
+        },
+
+        deleteLayoutItem(state, index) {
+            state.portalItems.splice(index, 1);
         }
 
 
