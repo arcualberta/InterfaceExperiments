@@ -1,7 +1,5 @@
 <template lang="pug">
-	<div class="functional-container">
 		include ModalContentsBase.pug
-	</div>
 </template>
 
 <script lang="ts">
@@ -10,25 +8,12 @@
 	@Component({
 	})
 	export default class ModalContentsBase extends Vue {
-		//interface?
-		title: string = '';
-		description: string = '';
-		buttonText1: string = 'Close';
-		buttonText2: string = '';
-		tabTitle1: string = '';
-		tabTitle2: string = '';
-		tabTitle3: string = '';
-
-
 
 	}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
-	.functional-container{
-		width:100%;
-		height:100%;
 
 		.modal-container{
 			display: flex;
@@ -36,6 +21,7 @@
 			align-items: center;
 			width: 100%;
 			height: 100%;
+			background-color:red;
 		
 
 			.title-row{
@@ -77,7 +63,6 @@
 				}
 			}
 		}
-	}
 
 	
 

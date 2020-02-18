@@ -36,7 +36,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx", "@types/vuedraggable/index.d.ts"
+    "tests/**/*.tsx", "@types/vuedraggable/index.d.ts", "webpack.config.js"
   ],
   "exclude": [
     "node_modules"
