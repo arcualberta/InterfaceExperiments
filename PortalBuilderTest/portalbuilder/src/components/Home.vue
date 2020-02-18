@@ -94,7 +94,7 @@ import ModalContentsBase from './ModalContentsBase.vue';
 			console.log("showing modal", modalName);
 			switch (modalName) {
 				case "Carousel":
-					this.$modal.show(Carousel);
+					this.$modal.show(Carousel, { name: 'dynamic-modal'});
 					break;
 				case "Description":
 					//this.$modal.show(Description);

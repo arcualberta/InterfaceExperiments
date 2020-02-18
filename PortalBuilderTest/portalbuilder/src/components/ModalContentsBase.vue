@@ -48,7 +48,6 @@
 			.description-container{
 				width:80%;
 				height:100%;
-				padding: 30px;
 				border: solid black 1px;
 			}
 

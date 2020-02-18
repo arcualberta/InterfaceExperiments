@@ -9,5 +9,5 @@ div(class='modal-container')
 	div(class='description-container') {{description}}
 		block modalContentsHere
 	div(class='button-container')
-		button(class='button-style') {{buttonText1}}
+		button(class='button-style' @click="$emit('close')") {{buttonText1}}
 		button(class='button-style') {{buttonText2}}

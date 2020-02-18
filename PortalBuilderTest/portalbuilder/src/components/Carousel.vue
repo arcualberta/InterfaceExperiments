@@ -20,7 +20,7 @@
 		title = "Image Carousel";
 		description = "A short text about what this all means";
 		buttonText1 = "Close";
-		buttonText2 = "Button";
+		buttonText2 = "Upload";
 		hasTabs = false;
 
 		dropzoneOptions: DropZoneOptions = {
@@ -28,7 +28,8 @@
           thumbnailWidth: 150,
           maxFilesize: 0.5,
           headers: { "My-Awesome-Header": "header value" }
-      }
+		}
+
 
 		
 	}
