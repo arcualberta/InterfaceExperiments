@@ -1,10 +1,12 @@
-div
-	div
+div(class='modal-container')
+	div(class='title-row')
 		h3 I am a title
-		button {{tabTitle1}}
-		button {{tabTitle2}}
-		button {{tabTitle3}}
-	div {{description}}
+		div(class='tab-container')
+			button(class='tab-style') {{tabTitle1}}
+			button(class='tab-style') {{tabTitle2}}
+			button(class='tab-style') {{tabTitle3}}
+	div(class='description-container') {{description}}
 	block modalContentsHere
-	button {{buttonText1}}
-	button {{buttonText2}}
+	div(class='button-container')
+		button(class='button-style') {{buttonText1}}
+		button(class='button-style') {{buttonText2}}
