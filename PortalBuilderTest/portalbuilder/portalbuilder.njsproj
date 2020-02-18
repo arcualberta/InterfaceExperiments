@@ -52,6 +52,7 @@
     <Content Include="vue.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="%40types\vue2-dropzone\" />
     <Folder Include="%40types\vuedraggable\" />
     <Folder Include="dist\" />
     <Folder Include="%40types\" />
@@ -72,6 +73,7 @@
     <Content Include="babel.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="%40types\vue2-dropzone\index.d.ts" />
     <TypeScriptCompile Include="src\models\item.ts" />
     <TypeScriptCompile Include="src\routes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />

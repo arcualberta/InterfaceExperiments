@@ -9,6 +9,7 @@ import Home from './components/Home.vue';
 import DragItem from './components/Item.vue';
 import ModalContentsBase from './components/ModalContentsBase.vue';
 import Carousel from './components/Carousel.vue';
+import Description from './components/Description.vue';
 
 Vue.config.productionTip = true;
 
@@ -26,6 +27,7 @@ Vue.component('DragItem', DragItem);
 Vue.component('Home', Home);
 Vue.component('Preview', Preview);
 Vue.component('Carousel', Carousel);
+Vue.component('Description', Description);
 Vue.component('ModalContentsBase', ModalContentsBase);
 
 new Vue({

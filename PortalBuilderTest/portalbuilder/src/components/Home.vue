@@ -38,8 +38,8 @@
 <script lang="ts">
 	import { Component, Prop, Vue } from 'vue-property-decorator';
 	import draggable from 'vuedraggable'; 
-import Carousel from './Carousel.vue';
-import ModalContentsBase from './ModalContentsBase.vue';
+	import Carousel from './Carousel.vue';
+	import Description from './Description.vue';
 
     @Component({
         components:{
@@ -51,8 +51,8 @@ import ModalContentsBase from './ModalContentsBase.vue';
     //TODO: move these to another place to fetch until DB is implemented - they are static tho so...
         layoutItems:Array<any> =  [
         { name: "Image Carousel", id: 5, type: "Carousel" },
-        { name: "Form", id: 6, type: "Form" },
-        { name: "Description", id: 7, type: "Description" }
+        { name: "Description", id: 6, type: "Description" },
+        { name: "Form", id: 7, type: "Form" }
       ];
 
 
@@ -94,10 +94,10 @@ import ModalContentsBase from './ModalContentsBase.vue';
 			console.log("showing modal", modalName);
 			switch (modalName) {
 				case "Carousel":
-					this.$modal.show(Carousel, { name: 'dynamic-modal'});
+					this.$modal.show(Carousel);
 					break;
 				case "Description":
-					//this.$modal.show(Description);
+					this.$modal.show(Description);
 					break;
 				case "Form":
 					//this.$modal.show(Form);
