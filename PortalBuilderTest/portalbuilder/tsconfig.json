@@ -31,13 +31,16 @@
             "scripthost"
         ]
     },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx", "@types/vuedraggable/index.d.ts", "webpack.config.js"
-  ],
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+        "tests/**/*.tsx",
+        "@types/vuedraggable/index.d.ts",
+        "@types/vue2-dropzone/index.d.ts",
+        "webpack.config.js"
+    ],
   "exclude": [
     "node_modules"
   ]
