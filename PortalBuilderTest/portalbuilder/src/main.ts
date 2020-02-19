@@ -10,6 +10,7 @@ import DragItem from './components/Item.vue';
 import ModalContentsBase from './components/ModalContentsBase.vue';
 import Carousel from './components/Carousel.vue';
 import Description from './components/Description.vue';
+import Form from './components/Form.vue';
 
 Vue.config.productionTip = true;
 
@@ -18,7 +19,7 @@ const routes = [
     { path: '/preview', component: Preview }
 ]
 
-Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } })
+Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: true } })
 Vue.use(VueRouter)
 const router = new VueRouter({ routes });
 
@@ -28,6 +29,7 @@ Vue.component('Home', Home);
 Vue.component('Preview', Preview);
 Vue.component('Carousel', Carousel);
 Vue.component('Description', Description);
+Vue.component('Form', Form);
 Vue.component('ModalContentsBase', ModalContentsBase);
 
 new Vue({

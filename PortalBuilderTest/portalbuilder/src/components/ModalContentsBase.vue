@@ -21,13 +21,13 @@
 			align-items: center;
 			width: 100%;
 			height: 100%;
-			background-color:red;
+			//background-color:red;
 		
 
 			.title-row{
 				display:flex;
 				flex-direction: row;
-				width: 100%;
+				width: 80%;
 			
 				h3{
 					flex:3;

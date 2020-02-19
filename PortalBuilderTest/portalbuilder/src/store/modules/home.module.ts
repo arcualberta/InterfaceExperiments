@@ -24,7 +24,13 @@ const homeModule: Module<any, any> = {
             return state.portalItems || [];
         }
     },
-
+    /**
+     * Actions commit mutations
+     * Can be asyncronous
+     * Called as dispatches - can call other actions too
+     * These call mutations on the state, they don't change the state themselves
+     * Very similar to mutations otherwise
+     **/
     actions: {
         updatePortalItems({ commit }, payload){
             commit("updatePortalItems", payload);
@@ -38,6 +44,11 @@ const homeModule: Module<any, any> = {
 
     },
 
+    /**
+     *  Mutations are called using commits
+     *  Directly change the state
+     *  Must be syncronous
+     **/
     mutations: {
         updateTitle(state: any, newTitle:string) {
             state.title = newTitle;

@@ -16,7 +16,7 @@
                 <draggable class="draggable-item-container" :list="portalElements" group="sharedItems" handle=".handle">
                     <div class="draggable-item" v-on:click="showModal(item.type)" v-for="(item, index) in portalElements" :key='index'>
                         <i class="handle draggable">HANDLE</i>
-                        <DragItem @delete-item="deleteItem($event)" :idNum=item.id :indexNum="index" :deleteable=true />
+                        <DragItem @delete-item="deleteItem($event)" :name="item.name" :idNum=item.id :indexNum="index" :deleteable=true />
                     </div>
                 </draggable>
             </div>
@@ -26,7 +26,7 @@
                 <h2 class="draggable-header">Layout Options</h2>
                 <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
                     <div class="draggable-item draggable" v-for="item in layoutItems" :key='item.id'>
-                        <DragItem :idNum=item.id :deleteable=false />
+                        <DragItem :idNum=item.id :deleteable=false :name="item.name" />
                     </div>
                 </draggable>
             </div>
@@ -40,6 +40,7 @@
 	import draggable from 'vuedraggable'; 
 	import Carousel from './Carousel.vue';
 	import Description from './Description.vue';
+	import Form from './Form.vue';
 
     @Component({
         components:{
@@ -58,7 +59,9 @@
 
         openPreview() {
             this.$router.replace('preview');
-        }
+		}
+
+    /********** getters/setters for state **********/
 
         get titleValue():String {
             return this.$store.getters.getTitle;
@@ -90,6 +93,10 @@
 			this.$store.dispatch('deletePortalItem', $event);
 		}
 
+	/********** end of setters/getters for state **********/
+
+
+
 		showModal(modalName: string) {
 			console.log("showing modal", modalName);
 			switch (modalName) {
@@ -100,7 +107,7 @@
 					this.$modal.show(Description);
 					break;
 				case "Form":
-					//this.$modal.show(Form);
+					this.$modal.show(Form);
 					break;
 			}
 		}
