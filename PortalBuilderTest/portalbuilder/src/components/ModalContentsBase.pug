@@ -1,11 +1,10 @@
 div(class='modal-container')
 	div(class='title-row')
 		h3 {{title}}
-		if hasTabs
-			div(class='tab-container')
-				button(class='tab-style') {{tabTitle1}}
-				button(class='tab-style') {{tabTitle2}}
-				button(class='tab-style') {{tabTitle3}}
+		div(v-if="hasTabs" class='tab-container')
+			button(class='tab-style') {{tabTitle1}}
+			button(class='tab-style') {{tabTitle2}}
+			button(class='tab-style') {{tabTitle3}}
 	div(class='description-container') {{description}}
 		block modalContentsHere
 	div(class='button-container')

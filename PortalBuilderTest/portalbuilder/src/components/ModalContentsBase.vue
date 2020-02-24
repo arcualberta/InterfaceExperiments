@@ -37,10 +37,11 @@
 					flex:1;
 					display:flex;
 					flex-direction:row;
+					align-items: flex-end;
 
 					.tab-style{
 						flex: 1;
-						height: 50%;
+						height: 100%;
 					}
 				}
 			}

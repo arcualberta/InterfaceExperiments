@@ -11,6 +11,10 @@ import ModalContentsBase from './components/ModalContentsBase.vue';
 import Carousel from './components/Carousel.vue';
 import Description from './components/Description.vue';
 import Form from './components/Form.vue';
+//import PortalVue from 'portal-vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import './custom.scss'
+
 
 Vue.config.productionTip = true;
 
@@ -19,6 +23,8 @@ const routes = [
     { path: '/preview', component: Preview }
 ]
 
+Vue.use(BootstrapVue)
+//Vue.use(PortalVue)
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: true } })
 Vue.use(VueRouter)
 const router = new VueRouter({ routes });

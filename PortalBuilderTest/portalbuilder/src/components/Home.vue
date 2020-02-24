@@ -22,16 +22,21 @@
             </div>
 
             <!-- Elements that are NOT editable, ie, they're just the draggables -->
-            <div class="draggable-item-container">
+            <b-card class="draggable-item-container">
                 <h2 class="draggable-header">Layout Options</h2>
                 <draggable :list="layoutItems" :group="{ name: 'sharedItems', pull: 'clone', put: false }">
-                    <div class="draggable-item draggable" v-for="item in layoutItems" :key='item.id'>
+                    <b-card class="draggable-item draggable" v-for="item in layoutItems" :key='item.id'>
                         <DragItem :idNum=item.id :deleteable=false :name="item.name" />
-                    </div>
+                    </b-card>
                 </draggable>
-            </div>
+            </b-card>
         </div>
         <modals-container />
+        <div class="test-container">
+            <div v-for="item in testItems">
+                {{item}}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -54,7 +59,26 @@
         { name: "Image Carousel", id: 5, type: "Carousel" },
         { name: "Description", id: 6, type: "Description" },
         { name: "Form", id: 7, type: "Form" }
-      ];
+		];
+
+		testItems: Array<any> = [];
+
+		created() {
+			this.$store.dispatch("fetchUsers").then(() => {
+				console.log("dispatch complete!");
+				console.log("before: ", this.$store.getters.getDataNames);
+                this.testItems = this.$store.getters.getDataNames
+				setTimeout(() => {
+					this.$store.dispatch("updateUserName",
+						{
+							newName: "Mr. Waffles",
+							index: 1
+						});
+					console.log("after: ", this.$store.getters.getDataNames);
+					this.testItems = this.$store.getters.getDataNames;
+				}, 3000);
+			});
+		}
 
 
         openPreview() {
@@ -118,39 +142,41 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-    .overall-container {
-        display: flex;
-        flex-direction: row;
-        
+	.overall-container {
+		display: flex;
+		flex-direction: row;
+		
         .home
-    {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        flex: 2;
-    }
+	{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		flex: 2;
+	}
 
-    .draggable-item-container {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        justify-content: center;
-        border: solid black 1px;
-        flex: 1;
+	.draggable-item-container {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		justify-content: center;
+		border: solid black 1px;
+		flex: 1;
 
-        .draggable-item
-    {
-        border: solid black 1px;
-        padding: 10px;
-
+		.draggable-item
+	{
+		border: solid black 1px;
+		padding: 10px;
+		
         .handle
-            {
+	{
+	}
 
-            }
-    }
-    .draggable{
-        cursor: grab;
-    }
-    }
-    }
+	}
+
+	.draggable {
+		cursor: grab;
+	}
+
+	}
+	}
 </style>

@@ -2,7 +2,11 @@
 	extends ModalContentsBase.pug
 
 	block modalContentsHere
-		div Im in progress
+		div {{textToDisplayLabel}}
+		b-dropdown(text="Dropdown Test")
+			b-dropdown-item Test Hardcoded Item 1
+			b-dropdown-item Test Hardcoded Item 2
+			b-dropdown-item Test Hardcoded Item 3
 </template>
 
 <script lang="ts">
@@ -20,6 +24,8 @@
 		tabTitle1 = "Description";
 		tabTitle2 = "Settings";
 		tabTitle3 = "Email";
+
+		textToDisplayLabel: string = "Text to Display Link:";
 
 	}
 

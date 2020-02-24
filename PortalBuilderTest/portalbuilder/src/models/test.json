@@ -1,0 +1,22 @@
+{
+	"id": 0,
+	"title": "Test JSON Title",
+	"subtitle": "A Subtitle to last the ages",
+	"portalItems": [
+		{
+			"id": 0,
+			"name": "Image Carousel",
+			"type": "carousel"
+		},
+		{
+			"id": 1,
+			"name": "Description",
+			"type": "description"
+		},
+		{
+			"id": 2,
+			"name": "Form Editor",
+			"type": "form"
+		}
+	]
+}
