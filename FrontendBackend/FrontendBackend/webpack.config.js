@@ -8,11 +8,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const srcPath = "./public/src/js";
 const entries = {
-    main: "./public/src/js/index.js"
+    main: "./public/src/js/index.ts"
 };
 
 fs.readdirSync(srcPath).forEach((name) => {
-    const indexFile = `${srcPath}/${name}/index.js`;
+    const indexFile = `${srcPath}/${name}/index.ts`;
     if (fs.existsSync(indexFile)) {
         entries[name] = indexFile;
     }
@@ -21,6 +21,7 @@ fs.readdirSync(srcPath).forEach((name) => {
 module.exports = {
     mode: "development", // The mode of configuration
     entry: entries, // Our entry object that contains all entries founded
+    //devtool: "inline-source-map",
     output: {
         path: path.resolve(__dirname, "./public/dist"), // the output directory
         filename: "js/[name].js" // It will be <view-name>.js 
@@ -42,12 +43,16 @@ module.exports = {
                 test: /\.scss$/,
                 use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "sass-loader" }]
             },
-            {
+            /*{
                 // this will load all js files, transpile to es5
                 test: "/\.js$/",
                 exclude: /(node_modules)/,
                 use: { loader: "babel-loader", options: { presets: ["@babel/preset-env"] } }
-            },
+            },*/
+                // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+            {
+                test: /\.tsx?$/, loader: "ts-loader"
+            }
             //{
             //    test: /\.(jpe?g|png|gif|svg)$/,
             //    loaders: ["file-loader"]
@@ -59,6 +64,8 @@ module.exports = {
         ]
     },
     resolve: {
+        // Add `.ts` and `.tsx` as a resolvable extension.
+        extensions: [".ts", ".tsx", ".js"],
         alias: {
             // this makes webpack loads the development file, not the esm that can't be debugged on Chrome
             vue: "vue/dist/vue.js"

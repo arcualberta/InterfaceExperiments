@@ -15,7 +15,7 @@ export default new Vuex.Store({
 		anotherMessage: "This message is from STATE"
 	},
 	mutations: {
-		changeMessage(state) {
+		changeMessage(state:any) {
 			state.anotherMessage = `This message was changed at ${new Date().toLocaleString()} }`;
 		}
 
